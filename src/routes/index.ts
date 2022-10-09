@@ -15,6 +15,7 @@ v1Router
 v1Router
   .post("/transfers", transactions.transfer)
   .post("/deposit", transactions.deposit)
-  .post("/withdraw", transactions.withdraw);
+  .post("/withdraw", transactions.withdraw)
+  .get("/transactions", transactions.getAllTransactions)
 
 export default v1Router;

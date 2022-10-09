@@ -29,6 +29,16 @@ export class TransactionController extends BaseController {
           this.handleError(req, res, err);
         }
       };
+
+      getAllTransactions = async (req: Request, res: Response) => {
+        try {
+          const data = "success";
+    
+          this.handleSuccess(req, res, data);
+        } catch (err) {
+          this.handleError(req, res, err);
+        }
+      };
   }
   
   export const transactions = new TransactionController();
