@@ -33,7 +33,7 @@ export default class App {
     private registerHandlers() {
       const router = Router();
       router.use("/v1", v1Router);
-  
+      
       this.server.use("/api", router);
   
       this.server.get("/", (req, res) => {
