@@ -15,5 +15,5 @@
     "esModuleInterop": true
   },
   "exclude": ["src/**/*.spec.ts"],
-  "include": ["typings/**/*.d.ts", "src/**/*"]
+  "include": ["typings/**/*.d.ts", "src/**/*", "migrations"]
 }
