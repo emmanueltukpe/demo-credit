@@ -20,7 +20,7 @@ export const env = {
   port: Number(process.env.PORT),
   worker_port: Number(process.env.WORKER_PORT),
 
-  schema: "api",
+  schema: "democredit",
   db_host: process.env.DB_HOST,
   db_user: process.env.DB_USER,
   db_password: process.env.DB_PASSWORD,
@@ -41,11 +41,6 @@ export const knex = {
       password: process.env.DATABASE_PASSWORD || env.db_password,
       port: process.env.DATABASE_PORT || env.db_port,
     },
-    // pool: {
-    //   min: process.env.DB_POOL_MIN,
-    //   max: process.env.DB_POOL_MAX,
-    //   idle: process.env.DB_POOL_IDLE,
-    // },
     migrations: {
       tableName: 'KnexMigrations',
       directory: 'migration'

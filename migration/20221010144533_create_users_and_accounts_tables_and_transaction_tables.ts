@@ -6,8 +6,7 @@ import { env } from "../src/common/config/env";
 export async function up(knex: Knex) {
   const schema = MigrationUtils.schema(knex);
 
-  await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
-  await knex.raw(`CREATE SCHEMA ${env.schema};`);
+  await knex.raw(`CREATE SCHEMA IF NOT EXISTS ${env.schema};`);
 
   await knex.schema.withSchema(env.schema).createTable("Users", table => {
     const columns = schema(table)

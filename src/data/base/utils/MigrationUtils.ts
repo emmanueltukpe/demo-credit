@@ -1,13 +1,14 @@
 import { Knex } from "knex";
 
+
+
 export const handlePrimaryUuid =
-  (knex: Knex, table: Knex.CreateTableBuilder) => (column?: string) =>
+  (_knex: Knex, table: Knex.CreateTableBuilder) => (column?: string) =>
     table
       .uuid(column || "id")
       .primary()
       .notNullable()
-      .unique()
-      .defaultTo(knex.raw("uuid_generate_v4()"));
+      .unique();
 
 export const handleForeignUuid =
   (table: Knex.CreateTableBuilder) =>
