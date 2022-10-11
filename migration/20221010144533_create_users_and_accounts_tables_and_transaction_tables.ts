@@ -82,7 +82,7 @@ export async function up(knex: Knex) {
 }
 
 
-export async function down(_knex: Knex): Promise<void> {
-  throw new Error('Downward migrations are not supported. Restore from backup.')
+export async function down(knex: Knex): Promise<void> {
+    return knex.schema.dropTable('Transactions').dropTable('Accounts').dropTable('Users')
 }
 

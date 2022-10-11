@@ -15,5 +15,5 @@
     "esModuleInterop": true
   },
   "exclude": ["src/**/*.spec.ts"],
-  "include": ["typings/**/*.d.ts", "src/**/*", "migrations"]
+  "include": ["typings/**/*.d.ts", "src/**/*", "migrations", "knexfile.js"]
 }

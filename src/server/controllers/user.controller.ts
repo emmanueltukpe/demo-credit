@@ -1,20 +1,25 @@
+import jwt from "jsonwebtoken"
 import { BaseController } from "./base.controller";
 import { Request, Response } from "express";
+import { signup, login } from "../../data/users/users.repo";
+import { env } from "../../common/config/env";
 
 export class UserController extends BaseController {
-  login = async (req: Request, res: Response) => {
+  signup = async (req: Request, res: Response) => {
     try {
-      const data = "success";
+      const data = await signup(req.body);
       this.handleSuccess(req, res, data);
     } catch (err) {
       this.handleError(req, res, err);
     }
   };
 
-  signup = async (req: Request, res: Response) => {
+  login = async (req: Request, res: Response) => {
     try {
-      const data = "success";
-      this.handleSuccess(req, res, data);
+      const email = req.body
+      const data = await login(email);
+      const token = jwt.sign({data, email}, env.jwt_secret, { expiresIn: "365d" })
+      this.handleSuccess(req, res, {data, token});
     } catch (err) {
       this.handleError(req, res, err);
     }
