@@ -1,7 +1,7 @@
-import bunyan, { Stream } from 'bunyan';
-import { Request, Response } from 'express';
-import { reqSerializer, resSerializer, errSerializer } from './serializers';
-import env from '../../common/config/env';
+import bunyan, { Stream } from "bunyan";
+import { Request, Response } from "express";
+import { reqSerializer, resSerializer, errSerializer } from "./serializers";
+import { env } from "../../common/config/env";
 
 interface ILogger {
   error(err: Error, message?: any);
@@ -15,15 +15,15 @@ class Logger implements ILogger {
   private log: bunyan;
   constructor(name: string = env.service_name) {
     const stream: Stream =
-      env.app_env === 'test'
+      env.app_env === "test"
         ? {
-            level: 'debug',
-            path: './logs.json',
-            closeOnExit: true
+            level: "debug",
+            path: "./logs.json",
+            closeOnExit: true,
           }
         : {
-            level: 'debug',
-            stream: process.stdout
+            level: "debug",
+            stream: process.stdout,
           };
 
     this.log = bunyan.createLogger({
@@ -31,16 +31,16 @@ class Logger implements ILogger {
       serializers: {
         err: errSerializer,
         res: resSerializer,
-        req: reqSerializer
+        req: reqSerializer,
       },
-      streams: [stream]
+      streams: [stream],
     });
 
     /**
      * Overrides the default bunyan log fields and formats it into a format Logstash/Elastic Search
      * understands (for uniform indexing) in production or staging.
      */
-    if (['production', 'staging'].includes(env.app_env)) {
+    if (["production", "staging"].includes(env.app_env)) {
       // @ts-ignore
       this.log._emit = (rec, noemit) => {
         rec.message = rec.msg;
@@ -64,7 +64,7 @@ class Logger implements ILogger {
    * @param info Additional information about the error.
    */
   error(err: Error, info?: any) {
-    this.log.error({ err, ...(typeof info === 'string' ? { info } : info) });
+    this.log.error({ err, ...(typeof info === "string" ? { info } : info) });
   }
 
   /**
@@ -91,7 +91,7 @@ class Logger implements ILogger {
   logAPIResponse(req: Request, res: Response) {
     this.log.info({
       res,
-      req
+      req,
     });
   }
 
@@ -106,7 +106,7 @@ class Logger implements ILogger {
     this.log.error({
       err,
       res,
-      req
+      req,
     });
   }
 }

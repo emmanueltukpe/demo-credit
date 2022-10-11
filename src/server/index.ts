@@ -1,5 +1,5 @@
 import http from "http";
-import env from "../common/config/env";
+import { env } from "../common/config/env";
 import logger from "../common/logger";
 import App from "./app";
 
@@ -21,4 +21,3 @@ const start = async () => {
 };
 
 start();
-

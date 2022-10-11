@@ -91,3 +91,13 @@ export class AccountNotExistsError extends ControllerError {
   }
 }
 
+export class WrongPasswordError extends ControllerError {
+  constructor() {
+     const errorMessage = 'You have entered an incorrect password';
+     super(errorMessage);
+
+     this.code = StatusCodes.BAD_REQUEST;
+     this.error_code = 302;
+   }
+ }
+ 

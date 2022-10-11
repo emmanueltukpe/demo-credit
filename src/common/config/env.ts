@@ -20,6 +20,8 @@ export const env = {
   port: Number(process.env.PORT),
   worker_port: Number(process.env.WORKER_PORT),
 
+  jwt_secret: process.env.JWT_SECRET,
+
   schema: "democredit",
   db_host: process.env.DB_HOST,
   db_user: process.env.DB_USER,
