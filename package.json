@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/server/index.js",
     "start:dev": "nodemon ./dist/server | bunyan -l debug",
-    "knex:migrate:make": "knex --knexfile src/server/database/knexfile.ts migrate:make",
+    "migrate:latest": "knex --knexfile src/server/database/knexfile.ts migrate:make",
     "watch:tsc": "tsc --watch -p ./tsconfig.json",
     "build:tsc": "rm -rf ./dist && tsc -p ./tsconfig.json",
     "compile": "tsc"
