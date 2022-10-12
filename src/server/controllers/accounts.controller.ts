@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { BaseController } from "./base.controller";
 import { Request, Response } from "express";
-import { createAccount, getAccount, session, debit } from "../../data/accounts/accounts.repo";
+import { createAccount, getAccount, session } from "../../data/accounts/accounts.repo";
 import { env } from "../../common/config/env";
 
 export class AccountController extends BaseController {
