@@ -22,7 +22,7 @@ export const env = {
 
   jwt_secret: process.env.JWT_SECRET,
 
-  schema: "demo_credit",
+  schema: process.env.DB_DATABASE,
   db_host: process.env.DB_HOST,
   db_user: process.env.DB_USER,
   db_password: process.env.DB_PASSWORD,
@@ -44,7 +44,6 @@ export const knex = {
       port: process.env.DATABASE_PORT || env.db_port,
     },
     migrations: {
-      // tableName: 'KnexMigrations',
       directory: 'migration'
     },
 }

@@ -15,10 +15,23 @@ POST /transactions/transfers — create a transfer\
 GET /transactions — get all transactions
 
 ## To Run Locally ...
+Install dependencies
 
+```bash
 npm ci
+
+Start the Typescript Compiler in watch mode
+bash
 npm run watch:tsc
+
+Run the SQL migrations 
+bash
+npx knex migrate:rollback
 npx knex migrate:latest
+
+Start the server
+bash
 npm run start:dev
+```
 
 ![](img/entity-relationship_diagram.png)
