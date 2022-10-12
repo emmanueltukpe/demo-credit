@@ -19,8 +19,8 @@ export const createAccount = async (body: Account) => {
   const accountExists = await knex
     .select()
     .from("Accounts")
-    .where({ user: userId });
-  if (accountExists) throw new AccountExistsError();
+    .where({ user : userId });    
+  if (accountExists.length != 0) throw new AccountExistsError();
   const create = await knex("Accounts").insert({
     id: uuidv4(),
     user: userId,

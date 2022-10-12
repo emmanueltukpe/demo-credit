@@ -17,9 +17,9 @@ v1Router
   .get("/accounts/:id/balance", auth, accounts.getAccountBalance);
 
 v1Router
-  .post("/transactions/transfers", transactions.transfer)
-  .post("/transactions/deposit", transactions.deposit)
-  .post("/transactions/withdraw", transactions.withdraw)
-  .get("/transactions", transactions.getAllTransactions);
+  .post("/transactions/transfers", auth, transactions.transfer)
+  .post("/transactions/deposit", auth, transactions.deposit)
+  .post("/transactions/withdraw", auth, transactions.withdraw)
+  .get("/accounts/:id/transactions", auth, transactions.getAllTransactions);
 
 export default v1Router;
