@@ -13,7 +13,8 @@ v1Router
 // accounts
 v1Router
   .post("/accounts", auth, accounts.create)
-  .get("/accounts/:id", auth, accounts.getAccountBalance);
+  .post("/accounts/session", auth, accounts.createTransactionSession)
+  .get("/accounts/balance/:id", auth, accounts.getAccountBalance);
 
 v1Router
   .post("/transfers", transactions.transfer)

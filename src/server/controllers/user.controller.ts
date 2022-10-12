@@ -8,6 +8,7 @@ export class UserController extends BaseController {
   signup = async (req: Request, res: Response) => {
     try {
       const data = await signup(req.body);
+      
       this.handleSuccess(req, res, data);
     } catch (err) {
       this.handleError(req, res, err);
@@ -16,8 +17,10 @@ export class UserController extends BaseController {
 
   login = async (req: Request, res: Response) => {
     try {
-      const email = req.body
-      const data = await login(email);
+      const {email, password} = req.body
+      const user = await login({email, password});
+      const data = user[0].id
+      
       const token = jwt.sign({data, email}, env.jwt_secret, { expiresIn: "365d" })
       this.handleSuccess(req, res, {data, token});
     } catch (err) {

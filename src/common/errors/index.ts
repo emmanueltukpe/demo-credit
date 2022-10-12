@@ -91,9 +91,29 @@ export class AccountNotExistsError extends ControllerError {
   }
 }
 
+export class AccountExistsError extends ControllerError {
+  constructor() {
+    const errorMessage = 'User Already has an account';
+    super(errorMessage);
+
+    this.code = StatusCodes.BAD_REQUEST;
+    this.error_code = 301;
+  }
+}
+
 export class WrongPasswordError extends ControllerError {
   constructor() {
      const errorMessage = 'You have entered an incorrect password';
+     super(errorMessage);
+
+     this.code = StatusCodes.BAD_REQUEST;
+     this.error_code = 302;
+   }
+ }
+
+ export class InsufficientFundsError extends ControllerError {
+  constructor() {
+     const errorMessage = 'You have insuffiecient funds';
      super(errorMessage);
 
      this.code = StatusCodes.BAD_REQUEST;
