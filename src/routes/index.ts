@@ -14,12 +14,12 @@ v1Router
 v1Router
   .post("/accounts", auth, accounts.create)
   .post("/accounts/session", auth, accounts.createTransactionSession)
-  .get("/accounts/balance/:id", auth, accounts.getAccountBalance);
+  .get("/accounts/:id/balance", auth, accounts.getAccountBalance);
 
 v1Router
-  .post("/transfers", transactions.transfer)
-  .post("/deposit", transactions.deposit)
-  .post("/withdraw", transactions.withdraw)
+  .post("/transactions/transfers", transactions.transfer)
+  .post("/transactions/deposit", transactions.deposit)
+  .post("/transactions/withdraw", transactions.withdraw)
   .get("/transactions", transactions.getAllTransactions);
 
 export default v1Router;
