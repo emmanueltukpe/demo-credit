@@ -19,18 +19,24 @@ Install dependencies
 
 ```bash
 npm ci
+```
 
 Start the Typescript Compiler in watch mode
-bash
+
+```bash
 npm run watch:tsc
+```
 
 Run the SQL migrations 
-bash
+
+```bash
 npx knex migrate:rollback
 npx knex migrate:latest
+```
 
 Start the server
-bash
+
+```bash
 npm run start:dev
 ```
 
