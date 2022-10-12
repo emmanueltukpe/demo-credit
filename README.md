@@ -7,11 +7,18 @@ POST /users/signup — create a user\
 POST /users/login — auth a user
 
 POST /accounts — create an account\
-GET /accounts/:id — get account balance\
-POST /deposit — make a deposit\
-POST /withdraw — make a withdrawal
+GET /accounts/:id/balance — get account balance\
+POST /transactions/deposit — make a deposit\
+POST /transactions/withdraw — make a withdrawal
 
-POST /transfers — create a transfer\
-GET /transfers — get all transactions
+POST /transactions/transfers — create a transfer\
+GET /transactions — get all transactions
+
+## To Run Locally ...
+
+npm ci
+npm run watch:tsc
+npx knex migrate:latest
+npm run start:dev
 
 ![](img/entity-relationship_diagram.png)
