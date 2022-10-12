@@ -35,8 +35,9 @@ export class AccountController extends BaseController {
       const { account_number } =req.body
       const data = await session({ account_number });
       const accountNumber = data[0].account_number
-      const token = jwt.sign(accountNumber, env.jwt_secret)
-      this.handleSuccess(req, res, {accountNumber, token});
+      const accountId = data[0].id
+      const token = jwt.sign({accountId, accountNumber}, env.jwt_secret)
+      this.handleSuccess(req, res, {accountId, token});
     } catch (err) {
       this.handleError(req, res, err);
     }
