@@ -15,13 +15,14 @@ export const signup = async (body: User) => {
     const emailIsUsed = await knex.select().from('Users').where({email: body.email})[0];
     const hashedpassword = await bcrypt.hash(body.password, 10)
     if (emailIsUsed) throw new UserEmailExistsError();
-    const create = await knex('Users').insert({
+    const data = {
         id: uuidv4(),
         full_name: body.full_name,
         email: body.email,
         password: hashedpassword,
-    })
-    return create
+    }
+    await knex('Users').insert(data)
+    return data
 }
 
 

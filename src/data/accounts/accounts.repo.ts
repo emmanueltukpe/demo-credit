@@ -21,13 +21,14 @@ export const createAccount = async (body: Account) => {
     .from("Accounts")
     .where({ user : userId });    
   if (accountExists.length != 0) throw new AccountExistsError();
-  const create = await knex("Accounts").insert({
+  const data = {
     id: uuidv4(),
     user: userId,
     account_name: body.account_name,
     account_number: generatedAccountNumber(),
-  });
-  return create;
+  }
+  await knex("Accounts").insert(data);
+  return data;
 };
 
 export const getAccount = async (account_number: string) => {

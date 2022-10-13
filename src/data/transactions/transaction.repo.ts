@@ -25,7 +25,7 @@ export const fund = async (body: Ifund) => {
   const accountNumber = account[0].account_number;
   const accountId = account[0].id;
   await credit(accountNumber, body.amount);
-  const transactionRecord = await knex("Transactions").insert({
+  const data = {
     id: uuidv4(),
     transaction_type: "Fund",
     sender_account_number: accountNumber,
@@ -33,8 +33,9 @@ export const fund = async (body: Ifund) => {
     recipient_account_number: accountNumber,
     amount: body.amount,
     recipient_id: accountId,
-  });
-  return transactionRecord;
+  }
+  await knex("Transactions").insert(data);
+  return data;
 };
 
 export const withdraw = async (body: Iwithdraw) => {
@@ -43,7 +44,7 @@ export const withdraw = async (body: Iwithdraw) => {
   const accountNumber = account[0].account_number;
   const accountId = account[0].id;
   await debit(accountNumber, body.amount);
-  const transactionRecord = await knex("Transactions").insert({
+  const data = {
     id: uuidv4(),
     transaction_type: "Withdrawal",
     sender_account_number: accountNumber,
@@ -51,8 +52,9 @@ export const withdraw = async (body: Iwithdraw) => {
     recipient_account_number: accountNumber,
     amount: body.amount,
     recipient_id: accountId,
-  });
-  return transactionRecord;
+  }
+  await knex("Transactions").insert(data);
+  return data;
 };
 
 export const transfer = async (body: Transaction) => {
@@ -68,7 +70,7 @@ export const transfer = async (body: Transaction) => {
   const recipientAccountId = recipientAccount[0].id;
   await credit(recipientAccountNumber, body.amount);
 
-  const transactionRecord = await knex("Transactions").insert({
+  const data = {
     id: uuidv4(),
     transaction_type: "Transfer",
     sender_account_number: senderAccountNumber,
@@ -76,8 +78,9 @@ export const transfer = async (body: Transaction) => {
     sender_id: senderAccountId,
     recipient_account_number: recipientAccountNumber,
     recipient_id: recipientAccountId,
-  });
-  return transactionRecord;
+  }
+  await knex("Transactions").insert(data);
+  return data;
 };
 
 export const getAllUserTransactions = async (account_number: string) => {
